@@ -134,7 +134,7 @@
                                     <td class="d-flex justify-content-end">
                                         <div class="justify-content-between">
                                                 <a href="visualizar.html?id=`+ response.data.alunos[i].id +`"class="btn btn-info">visualizar</a>
-                                                <a href="editar.html?id=`+ response.data.alunos.id +`"class="btn btn-warning">editar</a>
+                                                <a href="editar.html?id=`+ response.data.alunos[i].id +`"class="btn btn-warning">editar</a>
                                                 <input class="btn btn-danger" onclick="deletar(`+ response.data.alunos[i].id +`)" type="button" value="deletar">
                                         </div>
                                     </td>
