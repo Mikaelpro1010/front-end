@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse mb-2" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Lista de Alunos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+</head>
+<body class="container">
+    <h2 class="card-header shadow">
+       Editar Aluno
+    </h2> 
+        <div class="card p-4 shadow">
+            <div class="col-6" id="nome">
+                <label for="nome" class="form-label mb-1 mt-3">Informe o nome do aluno:</label>
+                <input type="text" name="sexo" id="nome" class="form-control" value="">
+            </div>
+
+            <div class="col-6" id="idade">
+                <label for="quantidade" class="form-label mb-1 mt-3">Informe sua idade:</label>
+                <input type="text" name="sexo" id="idade" class="form-control" value="">
+            </div>
+
+            <div class="col-6" id="sexo">
+                <label for="sexo" class="form-label mb-1 mt-3">Informe seu sexo:</label>
+                <input type="text" name="sexo" id="sexo" class="form-control" value="">
+            </div>
+
+            <div class="col-6" id="media">
+                <label for="media" class="form-label mb-1 mt-3">Informe sua media:</label>
+                <input type="text" name="sexo" id="media" class="form-control" value="">
+            </div>
+
+            <div class="col-6">
+                <button class="btn btn-info mt-4" type="submit">Enviar</button>
+            </div>
+        </div>
+</body>
+
+<script src="./jquery.js"></script>
+
+    <script>
+        function querySt() {
+        hu = window.location.search.substring(1);
+        gy = hu.split("&");
+
+        for (i = 0; i < gy.length; i++) {
+            ft = gy[i].split("=");
+            if (ft[0] == "id") {
+            return ft[1];
+            }
+        }
+        }
+
+//inserir link no action via jquery
+
+        $("#document").ready(function () {
+        var id = querySt();
+        $.ajax({
+            url: "http://localhost/api/alunos/buscarAluno/" + id,
+            type: "get",
+            dataType: "json",
+            data: { 'id': $('#nome').val(),
+                    'id': $('#idade').val(),
+                    'id': $('#sexo').val(),
+                    'id': $('#media').val()
+            }
+        }).done(function (response) {
+            if (response.success) {
+                $('#mensagem').html(`
+                    <div class="alert alert-success" role="alert">
+                        'Nome encontrado com sucesso!'
+                    </div>
+                `);
+        });
+        });
+    </script>
+</html>
